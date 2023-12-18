@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import { useAttrs } from 'vue'
-import { Label, type LabelProps } from 'radix-vue'
+import { Label, LabelProps as LabelRootProps } from 'radix-vue'
 import { useFormField } from './useFormField'
 import { cn } from '@/lib/utils'
 
 defineOptions({
   inheritAttrs: false,
 })
-defineProps<LabelProps>()
+
+interface LabelProps extends LabelRootProps {
+  required?: boolean
+}
+
+const props = defineProps<LabelProps>()
 
 const { error, formItemId } = useFormField()
 const { class: className, ...rest } = useAttrs()
@@ -26,5 +31,6 @@ const { class: className, ...rest } = useAttrs()
     v-bind="rest"
   >
     <slot />
+    <span v-if="props.required" class="text-destructive"> *</span>
   </Label>
 </template>

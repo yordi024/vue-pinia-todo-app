@@ -9,7 +9,7 @@
         <div class="grid items-center w-full gap-4">
           <FormField v-slot="{ componentField }" name="task">
             <FormItem>
-              <FormLabel>Task</FormLabel>
+              <FormLabel required>Task</FormLabel>
               <FormControl>
                 <Input
                   id="task"
